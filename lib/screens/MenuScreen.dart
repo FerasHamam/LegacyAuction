@@ -5,12 +5,10 @@ class MenuScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Colors.white,
-        child: ListView(
-          children: [Text('')],
-        ),
+    return Container(
+      color: Colors.white,
+      child: ListView(
+        children: [Text('ouii')],
       ),
     );
   }

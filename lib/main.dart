@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'screens/MainScreen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+//screens
+import './screens/StackScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: MainScreen(),
+        home: StackScreen(),
       ),
     );
   }
