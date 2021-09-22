@@ -11,8 +11,8 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
     bool isMenu = Provider.of<AppState>(context).getIsMenu();
-    double scale = isMenu ? 0.5 : 1.0;
-    double slideX = isMenu ? deviceSize.width * 1.2 : 0;
+    double scale = isMenu ? 0.6 : 1.0;
+    double slideX = isMenu ? deviceSize.width * 1.1 : 0;
     double slideY = isMenu ? deviceSize.height * 0.6 : 0;
     return Align(
       alignment: Alignment.bottomRight,

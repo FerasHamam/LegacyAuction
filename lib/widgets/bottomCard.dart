@@ -10,13 +10,13 @@ class BottomCard extends StatelessWidget {
     Size deviceSize = MediaQuery.of(context).size;
     return Container(
       alignment: Alignment.bottomCenter,
-      height: deviceSize.height * 0.55,
+      height: deviceSize.height * 0.45,
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.green,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(350.sp),
-          topRight: Radius.circular(350.sp),
+          topLeft: Radius.circular(450.sp),
+          topRight: Radius.circular(450.sp),
         ),
       ),
     );
