@@ -6,7 +6,8 @@ import '../models/AppState.dart';
 //widgets
 import '../widgets//bottomCard.dart' as BC;
 
-class CategoriesScreen extends StatelessWidget {
+class ProductsScreen extends StatelessWidget {
+  static String name = 'productsscreen';
   @override
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;

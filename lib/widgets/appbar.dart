@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 //models
 import '../models/AppState.dart';
+//constants
+import '../constants.dart';
 
 class Appbar extends StatefulWidget {
   @override
@@ -33,10 +35,13 @@ class _AppbarState extends State<Appbar> with TickerProviderStateMixin {
           margin: EdgeInsets.only(top: notchSize),
           child: IconButton(
             padding: EdgeInsets.only(left: 600.w, top: 20.h),
+            splashColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
             icon: AnimatedIcon(
               icon: AnimatedIcons.menu_home,
               progress: _animController1,
-              color: Colors.black,
+              color: kPrimaryColor,
               size: 250.sp,
             ),
             onPressed: () {

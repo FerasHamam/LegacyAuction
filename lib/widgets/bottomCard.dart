@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
-//models
-// import '../models/AppState.dart';
 
 class BottomCard extends StatelessWidget {
   @override
@@ -13,7 +10,7 @@ class BottomCard extends StatelessWidget {
       height: deviceSize.height * 0.45,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.green,
+        color: Colors.blueGrey,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(450.sp),
           topRight: Radius.circular(450.sp),
