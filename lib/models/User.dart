@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class User with ChangeNotifier {
   String email = "";
   String password = "";
+  bool isSignedIn = false;
 
   void setEmail(String email) {
     this.email = email;
@@ -30,6 +31,8 @@ class User with ChangeNotifier {
         return false;
       }
     }
+    isSignedIn = true;
+    notifyListeners();
     return true;
   }
 
@@ -50,6 +53,7 @@ class User with ChangeNotifier {
       print(e);
       return false;
     }
+    isSignedIn = true;
     return true;
   }
 }

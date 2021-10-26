@@ -33,16 +33,18 @@ class _AppbarState extends State<Appbar> with TickerProviderStateMixin {
           height: deviceSize.height * 0.1,
           width: deviceSize.width * 0.5,
           margin: EdgeInsets.only(top: notchSize),
+          padding: EdgeInsets.only(left: 700.w, top: 30.h),
           child: IconButton(
-            padding: EdgeInsets.only(left: 600.w, top: 20.h),
+            iconSize: 250.sp,
             splashColor: Colors.transparent,
             hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
             icon: AnimatedIcon(
               icon: AnimatedIcons.menu_home,
               progress: _animController1,
-              color: kPrimaryColor,
-              size: 250.sp,
+              color: !Provider.of<AppState>(context, listen: false).isMenu
+                  ? kPrimaryColor
+                  : Colors.white,
             ),
             onPressed: () {
               setState(() {

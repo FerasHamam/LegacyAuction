@@ -6,7 +6,7 @@ import '../screens/StackScreen.dart';
 
 class RoundedButton extends StatelessWidget {
   final String text;
-  final Future<bool> Function() onSubmit;
+  final Function onSubmit;
   final Color color, textColor;
   const RoundedButton({
     required this.text,

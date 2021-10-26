@@ -8,6 +8,8 @@ import './models/User.dart';
 import './screens/SignupScreen.dart';
 import './screens/LoginScreen.dart';
 import './screens/StackScreen.dart';
+import './screens/AddProductScreen.dart';
+import './screens/MyBidsScreen.dart';
 //firebase
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_core/firebase_core.dart';
@@ -33,11 +35,13 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: LoginScreen(),
+          home: StackScreen(),
           routes: {
             LoginScreen.name: (context) => LoginScreen(),
             SignupScreen.name: (context) => SignupScreen(),
-            StackScreen.name: (context) => StackScreen()
+            StackScreen.name: (context) => StackScreen(),
+            AddProductScreen.name: (context) => AddProductScreen(),
+            MyBidsScreen.name: (context) => MyBidsScreen(),
           },
         ),
       ),
