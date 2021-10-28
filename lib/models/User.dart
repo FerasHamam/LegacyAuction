@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class User with ChangeNotifier {
   String email = "";
@@ -36,11 +37,24 @@ class User with ChangeNotifier {
     return true;
   }
 
-  Future<bool> signup() async {
+  Future<bool> signup(
+      {required String name,
+      required String email,
+      required String passowrd}) async {
     try {
       // ignore: unused_local_variable
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      FirebaseFirestore.instance
+          .collection('Users')
+          .doc(userCredential.user?.uid)
+          .set({
+        'email': email,
+        'name': name,
+      });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
