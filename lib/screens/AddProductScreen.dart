@@ -1,4 +1,3 @@
-import 'package:ai_project/inputComponents/button.dart';
 import 'package:flutter/material.dart';
 //constants
 import '../constants.dart';
@@ -81,7 +80,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         border: InputBorder.none),
                   ),
                 ),
-                RoundedButton(text: 'Add', onSubmit: () {}),
               ],
             ),
           ),

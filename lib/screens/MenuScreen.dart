@@ -2,16 +2,17 @@ import "package:flutter/material.dart";
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 //screens
 import './LoginScreen.dart';
 import 'AddProductScreen.dart';
 import './MyBidsScreen.dart';
 //constants
 import '../constants.dart';
+//providers
+import '../models/User.dart';
 
 class MenuScreen extends StatelessWidget {
-  const MenuScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
@@ -34,7 +35,7 @@ class MenuScreen extends StatelessWidget {
             height: 10.h,
           ),
           Text(
-            'Feras Hamam',
+            Provider.of<UserData>(context).userName,
             style: TextStyle(
               color: Colors.white,
               fontSize: deviceSize.height * 0.04,

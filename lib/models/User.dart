@@ -3,36 +3,51 @@ import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class User with ChangeNotifier {
-  String email = "";
-  String password = "";
-  bool isSignedIn = false;
+class UserData with ChangeNotifier {
+  String userName = "";
+  bool isLoggingIn = false;
 
-  void setEmail(String email) {
-    this.email = email;
-    print(email);
+  Future<bool> isLoggedIn() {
+    bool state = false;
+    return new Future<bool>(() {
+      FirebaseAuth.instance.authStateChanges().listen((user) {
+        if (user != null) state = true;
+      });
+      return state;
+    });
   }
 
-  void setPassword(String password) {
-    this.password = password;
-    print(password);
-  }
-
-  Future<bool> login() async {
+  Future<bool> login({required String email, required String password}) async {
+    isLoggingIn = true;
+    notifyListeners();
+    UserCredential userCredential;
     try {
       // ignore: unused_local_variable
-      UserCredential userCredential = await FirebaseAuth.instance
+      userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+      final query = await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(userCredential.user!.uid)
+          .get();
+      userName = query.get('name') as String;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
+        isLoggingIn = false;
+        notifyListeners();
         print('No user found for that email.');
-        return false;
+        throw ("No user found for that email.");
       } else if (e.code == 'wrong-password') {
+        isLoggingIn = false;
+        notifyListeners();
         print('Wrong password provided for that user.');
-        return false;
+        throw ("Wrong password provided for that user.");
+      } else {
+        isLoggingIn = false;
+        notifyListeners();
+        throw (e.message as String);
       }
     }
-    isSignedIn = true;
+    isLoggingIn = false;
     notifyListeners();
     return true;
   }
@@ -40,7 +55,9 @@ class User with ChangeNotifier {
   Future<bool> signup(
       {required String name,
       required String email,
-      required String passowrd}) async {
+      required String password}) async {
+    isLoggingIn = true;
+    notifyListeners();
     try {
       // ignore: unused_local_variable
       UserCredential userCredential =
@@ -57,17 +74,24 @@ class User with ChangeNotifier {
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
+        isLoggingIn = false;
+        notifyListeners();
         print('The password provided is too weak.');
-        return false;
+        throw ('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
+        isLoggingIn = false;
+        notifyListeners();
         print('The account already exists for that email.');
-        return false;
+        throw ('The account already exists for that email.');
       }
     } catch (e) {
-      print(e);
-      return false;
+      isLoggingIn = false;
+      notifyListeners();
+      throw e;
     }
-    isSignedIn = true;
+    userName = name;
+    isLoggingIn = false;
+    notifyListeners();
     return true;
   }
 }

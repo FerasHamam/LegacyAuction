@@ -13,6 +13,7 @@ import './screens/MyBidsScreen.dart';
 //firebase
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AppState()),
-        ChangeNotifierProvider(create: (context) => User())
+        ChangeNotifierProvider(create: (context) => UserData())
       ],
       child: ScreenUtilInit(
         designSize: Size(2400, 1080),
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: LoginScreen(),
+          home: _getLandingPage(),
           routes: {
             LoginScreen.name: (context) => LoginScreen(),
             SignupScreen.name: (context) => SignupScreen(),
@@ -47,4 +48,16 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _getLandingPage() {
+  return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (BuildContext context, snapshot) {
+        if (snapshot.hasData && snapshot.data?.providerData.length == 1) {
+          // logged in using email and password
+          return StackScreen();
+        }
+        return LoginScreen();
+      });
 }
