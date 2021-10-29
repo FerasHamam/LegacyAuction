@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 //constants
 import '../constants.dart';
 //screens
-import '../screens/LoginScreen.dart';
-import '../screens/SignupScreen.dart';
+//provider
+import 'package:provider/provider.dart';
+import '../models/AppState.dart';
 
 class goToTextButton extends StatelessWidget {
   final String text;
@@ -14,12 +15,12 @@ class goToTextButton extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 10),
       width: deviceSize.width * 0.8,
-      child: goToSignup(deviceSize, text, context),
+      child: goTo(deviceSize, text, context),
     );
   }
 }
 
-Widget goToSignup(Size deviceSize, String text, BuildContext context) {
+Widget goTo(Size deviceSize, String text, BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
@@ -32,9 +33,13 @@ Widget goToSignup(Size deviceSize, String text, BuildContext context) {
       ),
       TextButton(
           onPressed: () {
-            text == 'Signup instead'
-                ? Navigator.of(context).pushNamed(SignupScreen.name)
-                : Navigator.of(context).pushNamed(LoginScreen.name);
+            if (text == 'Signup instead') {
+              // Navigator.of(context).pushNamed(SignupScreen.name);
+              Provider.of<AppState>(context, listen: false).setType();
+            } else {
+              // Navigator.of(context).pushNamed(LoginScreen.name);
+              Provider.of<AppState>(context, listen: false).setType();
+            }
           },
           child: Text(
             text,

@@ -1,16 +1,17 @@
 import "package:flutter/material.dart";
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+//providers
+import 'package:provider/provider.dart';
+import '../models/AppState.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:provider/provider.dart';
 //screens
-import './LoginScreen.dart';
+
 import 'AddProductScreen.dart';
 import './MyBidsScreen.dart';
+import './LoginAndSignupScreen.dart';
 //constants
 import '../constants.dart';
-//providers
-import '../models/User.dart';
 
 class MenuScreen extends StatelessWidget {
   @override
@@ -24,26 +25,8 @@ class MenuScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Welcome',
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 330.sp,
-                fontWeight: FontWeight.bold),
-          ),
           SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            Provider.of<UserData>(context).userName,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: deviceSize.height * 0.04,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(
-            height: 150.h,
+            height: 300.h,
           ),
           TextButton.icon(
             style: ButtonStyle(
@@ -87,7 +70,9 @@ class MenuScreen extends StatelessWidget {
                   overlayColor: MaterialStateProperty.all(Colors.transparent)),
               onPressed: () async {
                 await FirebaseAuth.instance.signOut();
-                Navigator.of(context).pushReplacementNamed(LoginScreen.name);
+                Provider.of<AppState>(context, listen: false).setMenu();
+                Navigator.of(context)
+                    .pushReplacementNamed(LoginAndSignupScreen.name);
               },
               icon: Icon(
                 Icons.logout_rounded,

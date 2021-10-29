@@ -17,6 +17,28 @@ class UserData with ChangeNotifier {
     });
   }
 
+  Future<void> getUserName() async {
+    final currUser = await FirebaseAuth.instance.currentUser;
+    if (currUser != null && userName.isEmpty) {
+      final query = await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(currUser.uid)
+          .get();
+      userName = query.get('name') as String;
+      notifyListeners();
+    } else {
+      await FirebaseAuth.instance.signOut();
+    }
+  }
+
+  static Future<String> getUserId() async {
+    final currUser = await FirebaseAuth.instance.currentUser;
+    if (currUser != null) {
+      return currUser.uid;
+    }
+    return "";
+  }
+
   Future<bool> login({required String email, required String password}) async {
     isLoggingIn = true;
     notifyListeners();

@@ -4,12 +4,12 @@ import 'package:provider/provider.dart';
 //models
 import './models/AppState.dart';
 import './models/User.dart';
+import './models/Products.dart';
 //screens
-import './screens/SignupScreen.dart';
-import './screens/LoginScreen.dart';
 import './screens/StackScreen.dart';
 import './screens/AddProductScreen.dart';
 import './screens/MyBidsScreen.dart';
+import './screens/LoginAndSignupScreen.dart';
 //firebase
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_core/firebase_core.dart';
@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AppState()),
-        ChangeNotifierProvider(create: (context) => UserData())
+        ChangeNotifierProvider(create: (context) => UserData()),
+        ChangeNotifierProvider(create: (context) => Products())
       ],
       child: ScreenUtilInit(
         designSize: Size(2400, 1080),
@@ -36,10 +37,9 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: _getLandingPage(),
+          home: _getLandingPage(context),
           routes: {
-            LoginScreen.name: (context) => LoginScreen(),
-            SignupScreen.name: (context) => SignupScreen(),
+            LoginAndSignupScreen.name: (context) => LoginAndSignupScreen(),
             StackScreen.name: (context) => StackScreen(),
             AddProductScreen.name: (context) => AddProductScreen(),
             MyBidsScreen.name: (context) => MyBidsScreen(),
@@ -50,14 +50,13 @@ class MyApp extends StatelessWidget {
   }
 }
 
-Widget _getLandingPage() {
+Widget _getLandingPage(BuildContext context) {
   return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (BuildContext context, snapshot) {
         if (snapshot.hasData && snapshot.data?.providerData.length == 1) {
-          // logged in using email and password
           return StackScreen();
         }
-        return LoginScreen();
+        return LoginAndSignupScreen();
       });
 }

@@ -3,15 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 //models
 import '../models/AppState.dart';
-//constants
-import '../constants.dart';
 
-class Appbar extends StatefulWidget {
+class AppbarButton extends StatefulWidget {
   @override
   _AppbarState createState() => _AppbarState();
 }
 
-class _AppbarState extends State<Appbar> with TickerProviderStateMixin {
+class _AppbarState extends State<AppbarButton> with TickerProviderStateMixin {
   late AnimationController _animController1;
   bool isPlaying1 = false;
   @override
@@ -24,17 +22,16 @@ class _AppbarState extends State<Appbar> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
-    double notchSize = MediaQuery.of(context).viewPadding.top;
     return Align(
-      alignment: Alignment.topRight,
+      alignment: Alignment.topLeft,
       child: Container(
-          alignment: Alignment.topCenter,
           color: Colors.transparent,
           height: deviceSize.height * 0.1,
-          width: deviceSize.width * 0.5,
-          margin: EdgeInsets.only(top: notchSize),
-          padding: EdgeInsets.only(left: 700.w, top: 30.h),
+          width: deviceSize.width * 0.3,
+          margin: EdgeInsets.only(top: 48.h),
+          padding: EdgeInsets.only(right: 300.w),
           child: IconButton(
+            padding: EdgeInsets.all(0),
             iconSize: 250.sp,
             splashColor: Colors.transparent,
             hoverColor: Colors.transparent,
@@ -42,9 +39,7 @@ class _AppbarState extends State<Appbar> with TickerProviderStateMixin {
             icon: AnimatedIcon(
               icon: AnimatedIcons.menu_home,
               progress: _animController1,
-              color: !Provider.of<AppState>(context, listen: false).isMenu
-                  ? kPrimaryColor
-                  : Colors.white,
+              color: Colors.white,
             ),
             onPressed: () {
               setState(() {

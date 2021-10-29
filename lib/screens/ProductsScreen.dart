@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 //modles
 import '../models/AppState.dart';
 //widgets
-import '../widgets//bottomCard.dart' as BC;
+import '../widgets/AnimatedList.dart';
 
 class ProductsScreen extends StatelessWidget {
   static String name = 'productsscreen';
@@ -30,7 +30,7 @@ class ProductsScreen extends StatelessWidget {
               BoxShadow(
                   color: Colors.black, blurRadius: 2.w, spreadRadius: 0.2.w),
             ]),
-        child: BC.BottomCard(),
+        child: ProductsList(),
       ),
     );
   }
