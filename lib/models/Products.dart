@@ -7,11 +7,13 @@ import './User.dart';
 class Products with ChangeNotifier {
   List<Product> products = [];
 
-  void addProduct(String name, String desc, String startingPrice) async {
+  void addProduct(
+      String name, String desc, String startingPrice, String imageURL) {
     final Product newProduct = new Product(
       name: name,
       desc: desc,
-      userId: await UserData.getUserId(),
+      imageURL: imageURL,
+      userEmail: UserData.getUserEmail(),
       highestbidder: 'none',
       startingPrice: startingPrice,
       bidPrice: startingPrice,
@@ -21,7 +23,7 @@ class Products with ChangeNotifier {
       ),
     );
     try {
-      final _ref = await getDatabaseRef();
+      final _ref = getDatabaseRef();
       _ref.push().set(newProduct.toJson());
     } catch (err) {
       print(err);

@@ -2,27 +2,30 @@ class Product {
   late String prodId;
   String name;
   String desc;
+  String imageURL;
   String startingPrice;
   String bidPrice;
-  String userId;
+  String userEmail;
   String highestbidder;
   DateTime postedin;
   DateTime expiryDate;
   Product(
       {required this.name,
       required this.desc,
+      required this.imageURL,
       required this.startingPrice,
       required this.bidPrice,
-      required this.userId,
+      required this.userEmail,
       required this.highestbidder,
       required this.postedin,
       required this.expiryDate});
   Map<String, dynamic> toJson() => <String, dynamic>{
         'name': name,
         'desc': desc,
+        'imageURL': imageURL,
         'postedin': postedin.toString(),
         'expiryDate': expiryDate.toString(),
-        'userId': userId,
+        'userEmail': userEmail,
         'highestbidder': highestbidder,
         'startingPrice': startingPrice.toString(),
         'bidPrice': bidPrice.toString(),
@@ -30,9 +33,10 @@ class Product {
   Product.fromJson(Map<dynamic, dynamic> json)
       : name = json['name'],
         desc = json['desc'],
+        imageURL = json['imageURL'],
         startingPrice = json['startingPrice'],
         bidPrice = json['bidPrice'],
-        userId = json['userId'],
+        userEmail = json['userEmail'],
         highestbidder = json['highestbidder'],
         postedin = DateTime.parse(json['postedin'] as String),
         expiryDate = DateTime.parse(json['expiryDate'] as String);

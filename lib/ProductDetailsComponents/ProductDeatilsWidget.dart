@@ -32,7 +32,11 @@ class ProductDetailsWidget extends StatelessWidget {
           highestBidder: prod.highestbidder,
           highestBid: prod.bidPrice,
         ),
-        ProductDateWidget(postedin: prod.postedin, expiryDate: prod.expiryDate),
+        ProductDateWidget(
+          postedin: prod.postedin,
+          expiryDate: prod.expiryDate,
+          email: prod.userEmail,
+        ),
       ]),
     );
   }

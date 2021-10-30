@@ -28,28 +28,29 @@ class ProductWidget extends StatelessWidget {
           alignment: Alignment.topCenter,
           children: [
             Container(
-              width: deviceSize.width * 0.7,
-              height: deviceSize.height * 0.15,
-              margin: EdgeInsets.all(100.sp),
+              alignment: Alignment.bottomCenter,
+              width: deviceSize.width * 0.8,
+              height: deviceSize.height * 0.3,
+              margin: EdgeInsets.only(top: 200.sp, bottom: 100.sp),
               decoration: BoxDecoration(
-                color: kPrimaryColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(300.sp),
-                  topRight: Radius.circular(150.sp),
-                  bottomLeft: Radius.circular(150.sp),
-                  bottomRight: Radius.circular(150.sp),
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(150.sp),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                        spreadRadius: 10.sp,
+                        blurRadius: 10.sp,
+                        color: kPrimaryLightColor),
+                  ]),
               child:
-                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                  Column(mainAxisAlignment: MainAxisAlignment.end, children: [
                 SizedBox(
                   height: 10.h,
                 ),
                 Text(
                   '${prod.name.toUpperCase()}',
                   style: TextStyle(
-                      color: kPrimaryLightColor,
-                      fontSize: 200.sp,
+                      color: Colors.black,
+                      fontSize: 160.sp,
                       fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
@@ -58,19 +59,39 @@ class ProductWidget extends StatelessWidget {
                 Text(
                   '${prod.bidPrice}\$',
                   style: TextStyle(
-                      color: kPrimaryLightColor,
-                      fontSize: 150.sp,
+                      color: Colors.black,
+                      fontSize: 130.sp,
                       fontWeight: FontWeight.bold),
                 ),
+                SizedBox(
+                  height: 10.h,
+                ),
               ]),
+            ),
+            Container(
+              width: deviceSize.width * 0.8,
+              height: deviceSize.height * 0.2,
+              margin: EdgeInsets.all(200.sp),
+              decoration: BoxDecoration(
+                image: new DecorationImage(
+                    image: NetworkImage(prod.imageURL), fit: BoxFit.fill),
+                color: kPrimaryLightColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(150.sp),
+                  topRight: Radius.circular(150.sp),
+                  bottomLeft: Radius.circular(150.sp),
+                  bottomRight: Radius.circular(150.sp),
+                ),
+              ),
             ),
             Container(
               width: deviceSize.width * 0.7,
               height: deviceSize.height * 0.05,
               margin: EdgeInsets.only(
-                  top: 700.sp, left: 150.sp, right: 150.sp, bottom: 150.sp),
+                  top: 250.sp, left: 150.sp, right: 150.sp, bottom: 150.sp),
               decoration: BoxDecoration(
-                color: kPrimaryLightColor,
+                borderRadius: BorderRadius.circular(70.sp),
+                color: Colors.black54,
               ),
               child: Center(
                 child: Text(
@@ -79,10 +100,10 @@ class ProductWidget extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 150.sp,
                       fontWeight: FontWeight.bold,
-                      color: Colors.deepPurple),
+                      color: Colors.white),
                 ),
               ),
-            )
+            ),
           ],
         ),
         Container(
@@ -97,4 +118,3 @@ class ProductWidget extends StatelessWidget {
     );
   }
 }
-// {prod.expiryDate.day}-${prod.expiryDate.month}-${prod.expiryDate.year}

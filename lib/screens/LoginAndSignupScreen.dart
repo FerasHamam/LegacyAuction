@@ -191,7 +191,7 @@ class _LoginAndSignupScreenState extends State<LoginAndSignupScreen> {
                               _formKey.currentState!.save();
                               try {
                                 bool validUser;
-                                if (type == 'signup')
+                                if (type == 'Signup')
                                   validUser = await Provider.of<UserData>(
                                           context,
                                           listen: false)

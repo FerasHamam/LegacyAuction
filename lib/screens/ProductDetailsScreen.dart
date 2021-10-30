@@ -11,7 +11,8 @@ import 'package:ai_project/constants.dart';
 //input
 import 'package:ai_project/inputComponents/InputContainer.dart';
 //widgets
-import 'package:ai_project/descriptionComponents/ProductDeatilsWidget.dart';
+import 'package:ai_project/ProductDetailsComponents/ProductDeatilsWidget.dart';
+import 'package:ai_project/ProductDetailsComponents/ProductImageWidget.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final Product prod;
@@ -48,12 +49,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           },
           icon: Icon(
             Icons.arrow_back_rounded,
-            size: 200.sp,
+            size: 180.sp,
           ),
         ),
         title: Text(
           widget.prod.name,
-          style: TextStyle(fontSize: 180.sp),
+          style: TextStyle(fontSize: 150.sp),
           textAlign: TextAlign.center,
         ),
         backgroundColor: kPrimaryColor,
@@ -63,6 +64,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           alignment: Alignment.topCenter,
           child: Column(
             children: [
+              ProductImageWidget(
+                imageUrl: widget.prod.imageURL,
+              ),
               ProductDetailsWidget(prod: widget.prod),
               Container(
                 margin: EdgeInsets.only(top: 150.sp),
@@ -107,7 +111,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 150.sp),
+                margin: EdgeInsets.only(top: 100.sp),
                 width: deviceSize.width * 0.8,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(29),
@@ -153,6 +157,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: deviceSize.height * 0.1,
+              )
             ],
           ),
         ),

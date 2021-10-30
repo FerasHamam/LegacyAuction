@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 //constants
 import '../constants.dart';
 //input
@@ -20,12 +21,14 @@ class _AddProductScreenState extends State<AddProductScreen> {
   late TextEditingController productName;
   late TextEditingController desc;
   late TextEditingController startingPrice;
+  late TextEditingController imageUrl;
   final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
     productName = TextEditingController();
     desc = TextEditingController();
     startingPrice = TextEditingController();
+    imageUrl = TextEditingController();
     super.initState();
   }
 
@@ -33,6 +36,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
   void dispose() {
     startingPrice.dispose();
     productName.dispose();
+    desc.dispose();
+    imageUrl.dispose();
     super.dispose();
   }
 
@@ -184,7 +189,49 @@ class _AddProductScreenState extends State<AddProductScreen> {
                             Icons.price_change_rounded,
                             color: kPrimaryColor,
                           ),
-                          hintText: 'Enter starting price',
+                          hintText: 'Enter Reserve Price',
+                          border: InputBorder.none),
+                    ),
+                  ),
+                  inputContainer(
+                    child: TextFormField(
+                      controller: imageUrl,
+                      keyboardType: TextInputType.url,
+                      textInputAction: TextInputAction.done,
+                      onSaved: (value) async {
+                        if (value == null) {
+                          value = "0";
+                        }
+                        imageUrl.text = value;
+                      },
+                      validator: (value) {
+                        if (value!.contains('https://') == false)
+                          value = 'https://' + value;
+                        ;
+                        if (value == "") {
+                          isValid = false;
+                          return "you must enter image URL!";
+                        } else if (Uri.tryParse(value) != null) {
+                          http.get(Uri.parse(value)).then((response) {
+                            try {
+                              if (response.statusCode == 200) {
+                                isValid = true;
+                                return null;
+                              }
+                            } catch (err) {
+                              isValid = false;
+                              return 'image url is no valid!';
+                            }
+                          });
+                        }
+                      },
+                      cursorColor: kPrimaryColor,
+                      decoration: InputDecoration(
+                          icon: Icon(
+                            Icons.image_rounded,
+                            color: kPrimaryColor,
+                          ),
+                          hintText: 'Enter Image URL',
                           border: InputBorder.none),
                     ),
                   ),
@@ -200,13 +247,12 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         ),
                         onPressed: () async {
                           isValid = _formKey.currentState!.validate();
-                          print(isValid);
                           if (isValid) {
                             _formKey.currentState!.save();
                             try {
                               Provider.of<Products>(context, listen: false)
                                   .addProduct(productName.text, desc.text,
-                                      startingPrice.text);
+                                      startingPrice.text, imageUrl.text);
                               Provider.of<AppState>(context, listen: false)
                                   .setMenu();
                               Navigator.of(context).pop();

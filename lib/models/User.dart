@@ -31,10 +31,10 @@ class UserData with ChangeNotifier {
     }
   }
 
-  static Future<String> getUserId() async {
-    final currUser = await FirebaseAuth.instance.currentUser;
+  static String getUserEmail() {
+    final currUser = FirebaseAuth.instance.currentUser;
     if (currUser != null) {
-      return currUser.uid;
+      return currUser.email!;
     }
     return "";
   }
