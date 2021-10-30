@@ -26,6 +26,7 @@ class ProductsList extends StatelessWidget {
         itemBuilder: (context, dataSnapShot, animation, index) {
           final json = dataSnapShot.value as Map<dynamic, dynamic>;
           final product = Product.fromJson(json);
+          product.setProdId(dataSnapShot.key!);
           return ProductWidget(product);
         });
   }

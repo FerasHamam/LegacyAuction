@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 //modles
 import '../models/AppState.dart';
 //widgets
-import '../widgets/AnimatedList.dart';
+import 'AnimatedList.dart';
 
 class ProductsScreen extends StatelessWidget {
   static String name = 'productsscreen';

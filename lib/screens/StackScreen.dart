@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 //screens
-import 'ProductsScreen.dart';
+import '../widgets/ProductsScreen.dart';
 import 'MenuScreen.dart';
 //widgets
 import '../widgets/appbar.dart';

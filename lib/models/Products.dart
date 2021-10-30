@@ -7,11 +7,14 @@ import './User.dart';
 class Products with ChangeNotifier {
   List<Product> products = [];
 
-  void addProduct(String name, String startingPrice) async {
+  void addProduct(String name, String desc, String startingPrice) async {
     final Product newProduct = new Product(
       name: name,
+      desc: desc,
       userId: await UserData.getUserId(),
+      highestbidder: 'none',
       startingPrice: startingPrice,
+      bidPrice: startingPrice,
       postedin: DateTime.now(),
       expiryDate: DateTime.now().add(
         Duration(days: 7),
