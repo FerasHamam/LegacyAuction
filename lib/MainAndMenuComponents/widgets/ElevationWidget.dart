@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 //providers
 import 'package:provider/provider.dart';
-import '../models/AppState.dart';
+import '../../models/AppState.dart';
 //constants
-import '../constants.dart';
+import '../../constants.dart';
 
 class ElevationWidget extends StatelessWidget {
   @override

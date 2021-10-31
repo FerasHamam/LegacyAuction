@@ -6,10 +6,10 @@ import './models/AppState.dart';
 import './models/User.dart';
 import './models/Products.dart';
 //screens
-import './screens/StackScreen.dart';
-import './screens/AddProductScreen.dart';
-import 'screens/MyInformationScreen.dart';
-import './screens/LoginAndSignupScreen.dart';
+import 'MainAndMenuComponents/screens/StackScreen.dart';
+import './AddProduct/AddProductScreen.dart';
+import 'UserInformationComponents/MyInformationScreen.dart';
+import 'inputComponents/LoginAndSignupScreen.dart';
 //firebase
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_core/firebase_core.dart';

@@ -4,8 +4,8 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 //models
-import '../models/Products.dart';
-import '../models/Product.dart';
+import '../../models/Products.dart';
+import '../../models/Product.dart';
 //widgets
 import './ProductWidget.dart';
 import './ElevationWidget.dart';

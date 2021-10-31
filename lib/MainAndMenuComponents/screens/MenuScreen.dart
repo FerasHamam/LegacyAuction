@@ -3,16 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 //providers
 import 'package:provider/provider.dart';
-import '../models/AppState.dart';
+import '../../models/AppState.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_auth/firebase_auth.dart';
 //screens
 
-import 'AddProductScreen.dart';
-import 'MyInformationScreen.dart';
-import './LoginAndSignupScreen.dart';
+import '../../AddProductComponents/AddProductScreen.dart';
+import '../../UserInformationComponents/MyInformationScreen.dart';
+import '../../inputComponents/LoginAndSignupScreen.dart';
 //constants
-import '../constants.dart';
+import '../../constants.dart';
 
 class MenuScreen extends StatelessWidget {
   @override

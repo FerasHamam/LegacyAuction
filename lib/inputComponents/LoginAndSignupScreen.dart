@@ -8,10 +8,10 @@ import '../models/AppState.dart';
 //constants
 import 'package:ai_project/constants.dart';
 //input helpers
-import '../inputComponents/InputContainer.dart';
-import '../inputComponents/goToTextButton.dart';
+import 'widgets/InputContainer.dart';
+import 'widgets/goToTextButton.dart';
 //screens
-import '../screens/StackScreen.dart';
+import '../MainAndMenuComponents/screens/StackScreen.dart';
 
 class LoginAndSignupScreen extends StatefulWidget {
   static String name = 'mix';
