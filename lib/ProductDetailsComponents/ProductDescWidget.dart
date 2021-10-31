@@ -10,17 +10,21 @@ class ProductDescWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
     return Container(
-      height: deviceSize.height * 0.18,
+      height: desc.length > 50
+          ? deviceSize.height * 0.18
+          : deviceSize.height * 0.15,
       child: Column(
         children: [
           SingleChildScrollView(
             child: Container(
-              height: deviceSize.height * 0.16,
+              height: desc.length > 50
+                  ? deviceSize.height * 0.16
+                  : deviceSize.height * 0.12,
               padding: EdgeInsets.all(80.sp),
               child: Text(
                 desc,
                 textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 120.sp, color: Colors.grey[800]),
+                style: TextStyle(fontSize: 110.sp, color: Colors.grey[800]),
               ),
             ),
           ),

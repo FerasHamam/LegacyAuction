@@ -16,7 +16,9 @@ class ProductDetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
     return Container(
-      height: deviceSize.height * 0.4,
+      height: prod.desc.length > 50
+          ? deviceSize.height * 0.4
+          : deviceSize.height * 0.35,
       width: deviceSize.width * 0.8,
       margin: EdgeInsets.only(top: 50.h),
       decoration: BoxDecoration(

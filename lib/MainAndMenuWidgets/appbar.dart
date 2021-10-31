@@ -26,10 +26,10 @@ class _AppbarState extends State<AppbarButton> with TickerProviderStateMixin {
       alignment: Alignment.topLeft,
       child: Container(
           color: Colors.transparent,
-          height: 105.h,
+          height: 150.h,
           width: deviceSize.width * 0.3,
-          margin: EdgeInsets.only(top: 42.h),
-          padding: EdgeInsets.only(right: 300.w),
+          margin: EdgeInsets.only(top: 20.h),
+          padding: EdgeInsets.only(right: 250.w),
           child: IconButton(
             padding: EdgeInsets.all(0),
             iconSize: 220.sp,

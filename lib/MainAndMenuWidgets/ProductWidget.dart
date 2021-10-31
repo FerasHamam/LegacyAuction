@@ -29,7 +29,7 @@ class ProductWidget extends StatelessWidget {
           children: [
             Container(
               width: deviceSize.width * 0.85,
-              height: deviceSize.height * 0.25,
+              height: deviceSize.height * 0.3,
               margin: EdgeInsets.all(100.sp),
               decoration: BoxDecoration(
                 image: new DecorationImage(
@@ -38,6 +38,8 @@ class ProductWidget extends StatelessWidget {
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(150.sp),
                   topRight: Radius.circular(150.sp),
+                  bottomLeft: Radius.circular(150.sp),
+                  bottomRight: Radius.circular(150.sp),
                 ),
               ),
             ),
@@ -65,7 +67,7 @@ class ProductWidget extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               width: deviceSize.width * 0.85,
               height: deviceSize.height * 0.08,
-              margin: EdgeInsets.only(top: 260.h, bottom: 100.sp),
+              margin: EdgeInsets.only(top: 240.h, bottom: 100.sp),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(150.sp),
@@ -74,21 +76,18 @@ class ProductWidget extends StatelessWidget {
               ),
               child:
                   Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-                SizedBox(
-                  height: 5.h,
-                ),
                 Text(
                   '${prod.name.toUpperCase()}',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 140.sp,
+                      fontSize: 120.sp,
                       fontWeight: FontWeight.bold),
                 ),
                 Text(
                   '${prod.bidPrice}\$',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 120.sp,
+                      fontSize: 100.sp,
                       fontWeight: FontWeight.bold),
                 ),
                 SizedBox(

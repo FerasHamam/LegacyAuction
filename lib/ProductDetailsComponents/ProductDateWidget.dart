@@ -28,12 +28,12 @@ class ProductDateWidget extends StatelessWidget {
           Text(
             '${expiryDate.difference(DateTime.now()).inDays} days left!',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 120.sp, color: Colors.grey[600]),
+            style: TextStyle(fontSize: 80.sp, color: Colors.grey[600]),
           ),
           Text(
             'Posted in ${DateFormat('dd - MM - yyyy').format(postedin)} by ${email}',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 120.sp, color: Colors.grey[600]),
+            style: TextStyle(fontSize: 80.sp, color: Colors.grey[600]),
           ),
         ],
       ),

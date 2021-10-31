@@ -23,6 +23,7 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   late TextEditingController bidPrice;
+  bool _isValid = false;
   final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
@@ -82,15 +83,19 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           value = "";
                         }
                         if (value.isEmpty) {
+                          _isValid = false;
                           bidPrice.selection = TextSelection.fromPosition(
                               TextPosition(offset: value.length));
                           return 'Price can\'t be empty!';
                         } else if (double.tryParse(bidPrice.text) == null) {
+                          _isValid = false;
                           return 'Price can\'t contain Characters!';
                         } else if (double.parse(bidPrice.text) <=
                             double.parse(widget.prod.bidPrice)) {
+                          _isValid = false;
                           return 'price should be more than ${widget.prod.bidPrice}\$';
                         }
+                        _isValid = true;
                       },
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       onSaved: (value) {
@@ -121,29 +126,31 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () async {
-                      try {
-                        if (FirebaseAuth.instance.currentUser == null) {
-                          throw Error();
+                      if (_isValid) {
+                        try {
+                          if (FirebaseAuth.instance.currentUser == null) {
+                            throw Error();
+                          }
+                          widget.prod.setProdBidPrice(bidPrice.text);
+                          widget.prod.setProdHigherBider(
+                              FirebaseAuth.instance.currentUser!.email!);
+                          final _ref = await Provider.of<Products>(context,
+                                  listen: false)
+                              .getDatabaseRef();
+                          await _ref
+                              .child(widget.prod.getProdId())
+                              .update(widget.prod.toJson());
+                          Navigator.of(context).pop();
+                        } catch (err) {
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(
+                              'Something went wrong!',
+                              textAlign: TextAlign.center,
+                            ),
+                            backgroundColor: Colors.red,
+                          ));
                         }
-                        widget.prod.setProdBidPrice(bidPrice.text);
-                        widget.prod.setProdHigherBider(
-                            FirebaseAuth.instance.currentUser!.email!);
-                        final _ref =
-                            await Provider.of<Products>(context, listen: false)
-                                .getDatabaseRef();
-                        await _ref
-                            .child(widget.prod.getProdId())
-                            .update(widget.prod.toJson());
-                        Navigator.of(context).pop();
-                      } catch (err) {
-                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text(
-                            'Something went wrong!',
-                            textAlign: TextAlign.center,
-                          ),
-                          backgroundColor: Colors.red,
-                        ));
                       }
                     },
                     style: ElevatedButton.styleFrom(

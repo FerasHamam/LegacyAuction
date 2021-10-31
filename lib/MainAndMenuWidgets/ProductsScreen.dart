@@ -11,9 +11,9 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isMenu = Provider.of<AppState>(context).getIsMenu();
-    double scale = isMenu ? 0.6 : 1.0;
-    double slideX = isMenu ? 2700.w : 0;
-    double slideY = isMenu ? 500.h : 0;
+    double scale = isMenu ? 0.5 : 1.0;
+    double slideX = isMenu ? 3200.w : 0;
+    double slideY = isMenu ? 800.h : 0;
     return Align(
       alignment: Alignment.bottomRight,
       child: AnimatedContainer(
