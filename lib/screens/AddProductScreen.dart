@@ -50,7 +50,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
         centerTitle: true,
         title: Text(
           'Add Product',
-          style: TextStyle(fontSize: 160.sp),
+          style: TextStyle(fontSize: 150.sp),
         ),
         backgroundColor: kPrimaryColor,
         leading: IconButton(

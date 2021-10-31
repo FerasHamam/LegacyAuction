@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => Products()),
       ],
       child: ScreenUtilInit(
-        designSize: Size(2400, 1000),
+        designSize: Size(1920, 1080),
         builder: () => MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(

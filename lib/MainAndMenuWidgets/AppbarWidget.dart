@@ -11,14 +11,14 @@ class AppbarWidget extends StatelessWidget {
     Size deviceSize = MediaQuery.of(context).size;
     return Container(
       alignment: Alignment.center,
-      padding: EdgeInsets.only(top: 300.sp),
+      padding: EdgeInsets.only(top: 250.sp),
       width: deviceSize.width,
-      height: 115.h,
+      height: 125.h,
       color: kPrimaryColor,
       child: Text(
         'L E G A C Y',
         textAlign: TextAlign.center,
-        style: TextStyle(color: Colors.white, fontSize: 180.sp),
+        style: TextStyle(color: Colors.white, fontSize: 160.sp),
       ),
     );
   }

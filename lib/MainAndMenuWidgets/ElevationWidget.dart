@@ -15,7 +15,7 @@ class ElevationWidget extends StatelessWidget {
       alignment: Alignment.center,
       padding: EdgeInsets.only(top: 300.sp),
       width: deviceSize.width,
-      height: Provider.of<AppState>(context).isMenu ? 0 : 115.h,
+      height: Provider.of<AppState>(context).isMenu ? 0 : 125.h,
       decoration: BoxDecoration(
         color: kPrimaryColor,
         boxShadow:
