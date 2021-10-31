@@ -32,7 +32,7 @@ class ProductsList extends StatelessWidget {
                   ),
                 ),
               ),
-              padding: EdgeInsets.only(top: 1000.sp),
+              padding: EdgeInsets.only(top: 600.sp, bottom: 300.sp),
               query: Provider.of<Products>(context, listen: false)
                   .getDatabaseRef(),
               itemBuilder: (context, dataSnapShot, animation, index) {

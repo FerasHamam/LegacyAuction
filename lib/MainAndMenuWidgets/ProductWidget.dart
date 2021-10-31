@@ -30,14 +30,14 @@ class ProductWidget extends StatelessWidget {
             Container(
               width: deviceSize.width * 0.85,
               height: deviceSize.height * 0.3,
-              margin: EdgeInsets.all(100.sp),
+              margin: EdgeInsets.all(50.sp),
               decoration: BoxDecoration(
                 image: new DecorationImage(
                     image: NetworkImage(prod.imageURL), fit: BoxFit.cover),
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(150.sp),
-                  topRight: Radius.circular(150.sp),
+                  topLeft: Radius.circular(120.sp),
+                  topRight: Radius.circular(120.sp),
                   bottomLeft: Radius.circular(150.sp),
                   bottomRight: Radius.circular(150.sp),
                 ),
@@ -47,7 +47,7 @@ class ProductWidget extends StatelessWidget {
               width: deviceSize.width * 0.85,
               height: deviceSize.height * 0.05,
               margin: EdgeInsets.only(
-                  top: 100.sp, left: 150.sp, right: 150.sp, bottom: 150.sp),
+                  top: 60.sp, left: 150.sp, right: 150.sp, bottom: 150.sp),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(150.sp),
                 color: Colors.black54,
@@ -57,7 +57,7 @@ class ProductWidget extends StatelessWidget {
                   '${prod.expiryDate.difference(DateTime.now()).inDays} Days left',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 130.sp,
+                      fontSize: 120.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
@@ -67,11 +67,12 @@ class ProductWidget extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               width: deviceSize.width * 0.85,
               height: deviceSize.height * 0.08,
-              margin: EdgeInsets.only(top: 240.h, bottom: 100.sp),
+              margin: EdgeInsets.only(top: 250.h, bottom: 100.sp),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(150.sp),
-                    bottomRight: Radius.circular(150.sp)),
+                  bottomLeft: Radius.circular(150.sp),
+                  bottomRight: Radius.circular(150.sp),
+                ),
                 color: Colors.black54,
               ),
               child:
@@ -80,7 +81,7 @@ class ProductWidget extends StatelessWidget {
                   '${prod.name.toUpperCase()}',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 120.sp,
+                      fontSize: 110.sp,
                       fontWeight: FontWeight.bold),
                 ),
                 Text(

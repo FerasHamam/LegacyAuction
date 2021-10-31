@@ -10,7 +10,7 @@ class ProductDescWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
     return Container(
-      height: desc.length > 50
+      height: desc.length > 40
           ? deviceSize.height * 0.18
           : deviceSize.height * 0.15,
       child: Column(
@@ -24,7 +24,7 @@ class ProductDescWidget extends StatelessWidget {
               child: Text(
                 desc,
                 textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 115.sp, color: Colors.grey[800]),
+                style: TextStyle(fontSize: 90.sp, color: Colors.grey[800]),
               ),
             ),
           ),

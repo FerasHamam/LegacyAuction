@@ -21,7 +21,7 @@ class ProductsScreen extends StatelessWidget {
           ..scale(scale)
           ..translate(slideX, slideY),
         duration: Duration(milliseconds: 100),
-        alignment: Alignment.bottomCenter,
+        alignment: Alignment.center,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50.w),
             color: Colors.white,

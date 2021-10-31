@@ -35,7 +35,7 @@ Widget emailContainer(String text, Size deviceSize) {
         softWrap: true,
         overflow: TextOverflow.visible,
         style: TextStyle(
-          fontSize: 100.sp,
+          fontSize: text.contains('@') == true ? 85.sp : 90.sp,
           fontWeight: FontWeight.bold,
           color: kPrimaryColor,
         ),

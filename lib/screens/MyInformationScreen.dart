@@ -23,7 +23,7 @@ class _MyInformationScreenState extends State<MyInformationScreen>
         centerTitle: true,
         title: Text(
           'My Information',
-          style: TextStyle(fontSize: 160.sp),
+          style: TextStyle(fontSize: 140.sp),
         ),
         backgroundColor: kPrimaryColor,
         leading: IconButton(
@@ -32,7 +32,7 @@ class _MyInformationScreenState extends State<MyInformationScreen>
           },
           icon: Icon(
             Icons.arrow_back_rounded,
-            size: 200.sp,
+            size: 180.sp,
           ),
         ),
       ),

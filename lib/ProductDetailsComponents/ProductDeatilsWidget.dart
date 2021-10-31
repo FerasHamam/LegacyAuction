@@ -18,7 +18,7 @@ class ProductDetailsWidget extends StatelessWidget {
     return Container(
       height: prod.desc.length > 50
           ? deviceSize.height * 0.4
-          : deviceSize.height * 0.35,
+          : deviceSize.height * 0.36,
       width: deviceSize.width * 0.8,
       margin: EdgeInsets.only(top: 50.h),
       decoration: BoxDecoration(
@@ -29,7 +29,8 @@ class ProductDetailsWidget extends StatelessWidget {
               blurRadius: 10.sp, spreadRadius: 3.sp, color: kPrimaryLightColor)
         ],
       ),
-      child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+      child:
+          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         ProductDescWidget(desc: prod.desc),
         ProductHighestBiderWidget(
           highestBidder: prod.highestbidder,

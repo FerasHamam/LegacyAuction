@@ -18,15 +18,15 @@ class ProductHighestBiderWidget extends StatelessWidget {
         Text(
           'Highest Bidder : $highestBidder',
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 100.sp, color: Colors.grey[800]),
+          style: TextStyle(fontSize: 90.sp, color: Colors.grey[800]),
         ),
         SizedBox(
-          height: deviceSize.height * 0.02,
+          height: deviceSize.height * 0.01,
         ),
         Text(
           'Highest Bid : $highestBid\$',
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 100.sp, color: Colors.grey[800]),
+          style: TextStyle(fontSize: 90.sp, color: Colors.grey[800]),
         ),
       ]),
     );
