@@ -24,7 +24,7 @@ class ProductDescWidget extends StatelessWidget {
               child: Text(
                 desc,
                 textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 110.sp, color: Colors.grey[800]),
+                style: TextStyle(fontSize: 115.sp, color: Colors.grey[800]),
               ),
             ),
           ),
