@@ -31,6 +31,7 @@ dependencies:
   firebase_database: ^8.0.1
   intl: ^0.17.0
   http: ^0.13.4
+  lottie: ^1.2.1
   
   
   
@@ -56,9 +57,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - lib/assets/images/Car.jpg
-  #   - lib/assets/images/Space.jpg
+  assets:
+    - lib/assets/lottie/Info.json
+    - lib/assets/lottie/MenuScreen.json
+    - lib/assets/lottie/Login.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

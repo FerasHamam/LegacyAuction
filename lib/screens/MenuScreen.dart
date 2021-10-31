@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 //providers
 import 'package:provider/provider.dart';
 import '../models/AppState.dart';
@@ -8,7 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 //screens
 
 import 'AddProductScreen.dart';
-import './MyBidsScreen.dart';
+import 'MyInformationScreen.dart';
 import './LoginAndSignupScreen.dart';
 //constants
 import '../constants.dart';
@@ -26,7 +27,13 @@ class MenuScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 300.h,
+            height: 50.h,
+          ),
+          Lottie.asset(
+            'lib/assets/lottie/MenuScreen.json',
+            fit: BoxFit.cover,
+            height: 400.h,
+            width: 300.w,
           ),
           TextButton.icon(
             style: ButtonStyle(
@@ -41,7 +48,7 @@ class MenuScreen extends StatelessWidget {
             ),
             label: Text(
               "Add Product",
-              style: TextStyle(color: Colors.white, fontSize: 170.sp),
+              style: TextStyle(color: Colors.white, fontSize: 160.sp),
             ),
           ),
           SizedBox(
@@ -51,7 +58,7 @@ class MenuScreen extends StatelessWidget {
               style: ButtonStyle(
                   overlayColor: MaterialStateProperty.all(Colors.transparent)),
               onPressed: () {
-                Navigator.of(context).pushNamed(MyBidsScreen.name);
+                Navigator.of(context).pushNamed(MyInformationScreen.name);
               },
               icon: Icon(
                 Icons.person_rounded,
@@ -59,8 +66,8 @@ class MenuScreen extends StatelessWidget {
                 size: 180.sp,
               ),
               label: Text(
-                "My Bids",
-                style: TextStyle(color: Colors.white, fontSize: 170.sp),
+                "My Information",
+                style: TextStyle(color: Colors.white, fontSize: 160.sp),
               )),
           SizedBox(
             height: 20.h,
@@ -81,7 +88,7 @@ class MenuScreen extends StatelessWidget {
               ),
               label: Text(
                 "Logout",
-                style: TextStyle(color: Colors.white, fontSize: 170.sp),
+                style: TextStyle(color: Colors.white, fontSize: 160.sp),
               )),
         ],
       ),

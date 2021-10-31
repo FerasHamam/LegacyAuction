@@ -20,12 +20,13 @@ class ProductDetailsWidget extends StatelessWidget {
       width: deviceSize.width * 0.8,
       margin: EdgeInsets.only(top: 50.h),
       decoration: BoxDecoration(
-          color: kPrimaryLightColor,
-          borderRadius: BorderRadius.circular(120.sp),
-          boxShadow: [
-            BoxShadow(
-                blurRadius: 0.2.sp, spreadRadius: 0.2.sp, color: Colors.black)
-          ]),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(120.sp),
+        boxShadow: [
+          BoxShadow(
+              blurRadius: 10.sp, spreadRadius: 3.sp, color: kPrimaryLightColor)
+        ],
+      ),
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         ProductDescWidget(desc: prod.desc),
         ProductHighestBiderWidget(

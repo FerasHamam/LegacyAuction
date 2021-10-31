@@ -28,11 +28,11 @@ class _AppbarState extends State<AppbarButton> with TickerProviderStateMixin {
           color: Colors.transparent,
           height: deviceSize.height * 0.1,
           width: deviceSize.width * 0.3,
-          margin: EdgeInsets.only(top: 48.h),
+          margin: EdgeInsets.only(top: 42.h),
           padding: EdgeInsets.only(right: 300.w),
           child: IconButton(
             padding: EdgeInsets.all(0),
-            iconSize: 250.sp,
+            iconSize: 220.sp,
             splashColor: Colors.transparent,
             hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,

@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserData with ChangeNotifier {
-  String userName = "";
+  static String userName = "";
+  static String Email = "";
+  static String staticEmail = "";
   bool isLoggingIn = false;
 
   Future<bool> isLoggedIn() {
@@ -17,26 +19,12 @@ class UserData with ChangeNotifier {
     });
   }
 
-  Future<void> getUserName() async {
-    final currUser = await FirebaseAuth.instance.currentUser;
-    if (currUser != null && userName.isEmpty) {
-      final query = await FirebaseFirestore.instance
-          .collection("Users")
-          .doc(currUser.uid)
-          .get();
-      userName = query.get('name') as String;
-      notifyListeners();
-    } else {
-      await FirebaseAuth.instance.signOut();
-    }
-  }
+  // static void setUserName() {
+  //   userName = name;
+  // }
 
-  static String getUserEmail() {
-    final currUser = FirebaseAuth.instance.currentUser;
-    if (currUser != null) {
-      return currUser.email!;
-    }
-    return "";
+  static void setEmail(String email) {
+    Email = email;
   }
 
   Future<bool> login({required String email, required String password}) async {
@@ -52,6 +40,8 @@ class UserData with ChangeNotifier {
           .doc(userCredential.user!.uid)
           .get();
       userName = query.get('name') as String;
+      Email = email;
+      staticEmail = email;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         isLoggingIn = false;
@@ -69,6 +59,7 @@ class UserData with ChangeNotifier {
         throw (e.message as String);
       }
     }
+    // await userCredential.user!.reload();
     isLoggingIn = false;
     notifyListeners();
     return true;
@@ -112,6 +103,8 @@ class UserData with ChangeNotifier {
       throw e;
     }
     userName = name;
+    Email = email;
+    staticEmail = email;
     isLoggingIn = false;
     notifyListeners();
     return true;

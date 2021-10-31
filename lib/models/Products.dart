@@ -13,7 +13,7 @@ class Products with ChangeNotifier {
       name: name,
       desc: desc,
       imageURL: imageURL,
-      userEmail: UserData.getUserEmail(),
+      userEmail: UserData.staticEmail,
       highestbidder: 'none',
       startingPrice: startingPrice,
       bidPrice: startingPrice,

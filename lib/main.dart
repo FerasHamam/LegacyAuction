@@ -8,7 +8,7 @@ import './models/Products.dart';
 //screens
 import './screens/StackScreen.dart';
 import './screens/AddProductScreen.dart';
-import './screens/MyBidsScreen.dart';
+import 'screens/MyInformationScreen.dart';
 import './screens/LoginAndSignupScreen.dart';
 //firebase
 // ignore: import_of_legacy_library_into_null_safe
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
             LoginAndSignupScreen.name: (context) => LoginAndSignupScreen(),
             StackScreen.name: (context) => StackScreen(),
             AddProductScreen.name: (context) => AddProductScreen(),
-            MyBidsScreen.name: (context) => MyBidsScreen(),
+            MyInformationScreen.name: (context) => MyInformationScreen(),
           },
         ),
       ),
@@ -51,12 +51,10 @@ class MyApp extends StatelessWidget {
 }
 
 Widget _getLandingPage(BuildContext context) {
-  return StreamBuilder<User?>(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (BuildContext context, snapshot) {
-        if (snapshot.hasData && snapshot.data?.providerData.length == 1) {
-          return StackScreen();
-        }
-        return LoginAndSignupScreen();
-      });
+  if (FirebaseAuth.instance.currentUser == null) {
+    return LoginAndSignupScreen();
+  } else {
+    UserData.setEmail(FirebaseAuth.instance.currentUser!.email!);
+    return StackScreen();
+  }
 }

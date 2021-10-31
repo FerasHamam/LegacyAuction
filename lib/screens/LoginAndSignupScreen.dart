@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 //provider
 import 'package:provider/provider.dart';
 import '../models/User.dart';
@@ -17,10 +19,12 @@ class LoginAndSignupScreen extends StatefulWidget {
   _LoginAndSignupScreenState createState() => _LoginAndSignupScreenState();
 }
 
-class _LoginAndSignupScreenState extends State<LoginAndSignupScreen> {
+class _LoginAndSignupScreenState extends State<LoginAndSignupScreen>
+    with TickerProviderStateMixin {
   late TextEditingController email;
   late TextEditingController name;
   late TextEditingController password;
+  late AnimationController _controller;
   final _formKey = GlobalKey<FormState>();
   bool isValid = false;
 
@@ -29,6 +33,7 @@ class _LoginAndSignupScreenState extends State<LoginAndSignupScreen> {
     email = TextEditingController();
     name = TextEditingController();
     password = TextEditingController();
+    _controller = AnimationController(vsync: this);
     super.initState();
   }
 
@@ -57,19 +62,17 @@ class _LoginAndSignupScreenState extends State<LoginAndSignupScreen> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: deviceSize.height * 0.2,
+                      height: deviceSize.height * 0.1,
                     ),
-                    Container(
-                      margin: EdgeInsets.only(bottom: 40),
-                      child: Text(
-                        type,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: kPrimaryColor,
-                          fontSize: deviceSize.height * 0.07,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                    Lottie.asset('lib/assets/lottie/Login.json',
+                        height: 250.h,
+                        controller: _controller, onLoaded: (composition) {
+                      _controller
+                        ..duration = composition.duration
+                        ..forward();
+                    }),
+                    SizedBox(
+                      height: deviceSize.height * 0.1,
                     ),
                     if (type == "Signup")
                       inputContainer(
