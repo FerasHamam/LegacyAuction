@@ -48,7 +48,7 @@ class MenuScreen extends StatelessWidget {
             ),
             label: Text(
               "Add Product",
-              style: TextStyle(color: Colors.white, fontSize: 160.sp),
+              style: TextStyle(color: Colors.white, fontSize: 150.sp),
             ),
           ),
           SizedBox(
@@ -67,7 +67,7 @@ class MenuScreen extends StatelessWidget {
               ),
               label: Text(
                 "My Information",
-                style: TextStyle(color: Colors.white, fontSize: 160.sp),
+                style: TextStyle(color: Colors.white, fontSize: 150.sp),
               )),
           SizedBox(
             height: 20.h,
@@ -88,7 +88,7 @@ class MenuScreen extends StatelessWidget {
               ),
               label: Text(
                 "Logout",
-                style: TextStyle(color: Colors.white, fontSize: 160.sp),
+                style: TextStyle(color: Colors.white, fontSize: 150.sp),
               )),
         ],
       ),

@@ -26,7 +26,7 @@ class ProductDateWidget extends StatelessWidget {
             ),
           ),
           Text(
-            '${expiryDate.difference(postedin).inDays} days left!',
+            '${expiryDate.difference(DateTime.now()).inDays} days left!',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 120.sp, color: Colors.grey[600]),
           ),

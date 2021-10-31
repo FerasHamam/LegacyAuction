@@ -10,11 +10,10 @@ class ProductsScreen extends StatelessWidget {
   static String name = 'productsscreen';
   @override
   Widget build(BuildContext context) {
-    Size deviceSize = MediaQuery.of(context).size;
     bool isMenu = Provider.of<AppState>(context).getIsMenu();
     double scale = isMenu ? 0.6 : 1.0;
-    double slideX = isMenu ? deviceSize.width * 1.1 : 0;
-    double slideY = isMenu ? deviceSize.height * 0.6 : 0;
+    double slideX = isMenu ? 2700.w : 0;
+    double slideY = isMenu ? 500.h : 0;
     return Align(
       alignment: Alignment.bottomRight,
       child: AnimatedContainer(

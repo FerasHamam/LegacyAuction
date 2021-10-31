@@ -13,7 +13,7 @@ class AppbarWidget extends StatelessWidget {
       alignment: Alignment.center,
       padding: EdgeInsets.only(top: 300.sp),
       width: deviceSize.width,
-      height: deviceSize.height * 0.12,
+      height: 125.h,
       color: kPrimaryColor,
       child: Text(
         'L E G A C Y',

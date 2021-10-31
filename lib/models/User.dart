@@ -6,22 +6,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class UserData with ChangeNotifier {
   static String userName = "";
   static String Email = "";
-  static String staticEmail = "";
   bool isLoggingIn = false;
 
-  Future<bool> isLoggedIn() {
-    bool state = false;
-    return new Future<bool>(() {
-      FirebaseAuth.instance.authStateChanges().listen((user) {
-        if (user != null) state = true;
-      });
-      return state;
-    });
+  static Future<void> setUserName() async {
+    final currUser = await FirebaseAuth.instance.currentUser;
+    if (currUser != null && userName.isEmpty) {
+      final query = await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(currUser.uid)
+          .get();
+      userName = query.get('name') as String;
+    } else {
+      await FirebaseAuth.instance.signOut();
+    }
   }
-
-  // static void setUserName() {
-  //   userName = name;
-  // }
 
   static void setEmail(String email) {
     Email = email;
@@ -41,7 +39,6 @@ class UserData with ChangeNotifier {
           .get();
       userName = query.get('name') as String;
       Email = email;
-      staticEmail = email;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         isLoggingIn = false;
@@ -104,7 +101,6 @@ class UserData with ChangeNotifier {
     }
     userName = name;
     Email = email;
-    staticEmail = email;
     isLoggingIn = false;
     notifyListeners();
     return true;

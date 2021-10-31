@@ -1,4 +1,6 @@
-class Product {
+import 'package:flutter/cupertino.dart';
+
+class Product with ChangeNotifier {
   late String prodId;
   String name;
   String desc;
@@ -30,6 +32,7 @@ class Product {
         'startingPrice': startingPrice.toString(),
         'bidPrice': bidPrice.toString(),
       };
+
   Product.fromJson(Map<dynamic, dynamic> json)
       : name = json['name'],
         desc = json['desc'],
@@ -40,6 +43,11 @@ class Product {
         highestbidder = json['highestbidder'],
         postedin = DateTime.parse(json['postedin'] as String),
         expiryDate = DateTime.parse(json['expiryDate'] as String);
+
+  void setProduct() {
+    notifyListeners();
+  }
+
   void setProdId(String prodId) {
     this.prodId = prodId;
   }

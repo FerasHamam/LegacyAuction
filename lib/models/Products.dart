@@ -5,15 +5,13 @@ import './Product.dart';
 import './User.dart';
 
 class Products with ChangeNotifier {
-  List<Product> products = [];
-
   void addProduct(
       String name, String desc, String startingPrice, String imageURL) {
     final Product newProduct = new Product(
       name: name,
       desc: desc,
       imageURL: imageURL,
-      userEmail: UserData.staticEmail,
+      userEmail: UserData.Email,
       highestbidder: 'none',
       startingPrice: startingPrice,
       bidPrice: startingPrice,
@@ -29,10 +27,6 @@ class Products with ChangeNotifier {
       print(err);
       throw (err);
     }
-  }
-
-  List<Product> getProducts() {
-    return [...products];
   }
 
   DatabaseReference getDatabaseRef() {

@@ -28,10 +28,10 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => AppState()),
         ChangeNotifierProvider(create: (context) => UserData()),
-        ChangeNotifierProvider(create: (context) => Products())
+        ChangeNotifierProvider(create: (context) => Products()),
       ],
       child: ScreenUtilInit(
-        designSize: Size(2400, 1080),
+        designSize: Size(2400, 1000),
         builder: () => MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
@@ -53,8 +53,13 @@ class MyApp extends StatelessWidget {
 Widget _getLandingPage(BuildContext context) {
   if (FirebaseAuth.instance.currentUser == null) {
     return LoginAndSignupScreen();
-  } else {
-    UserData.setEmail(FirebaseAuth.instance.currentUser!.email!);
-    return StackScreen();
   }
+  if (UserData.userName.length < 1)
+    UserData.setUserName().then(
+      (value) {
+        UserData.setEmail(FirebaseAuth.instance.currentUser!.email!);
+        return StackScreen();
+      },
+    );
+  return StackScreen();
 }

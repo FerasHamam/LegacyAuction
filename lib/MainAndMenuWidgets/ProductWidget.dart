@@ -17,9 +17,10 @@ class ProductWidget extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => ProductDetailsScreen(
-                    prod: prod,
-                  )),
+            builder: (context) => ProductDetailsScreen(
+              prod: prod,
+            ),
+          ),
         );
       },
       child: Column(children: [
@@ -51,10 +52,10 @@ class ProductWidget extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  '${prod.expiryDate.difference(prod.postedin).inDays} Days left',
+                  '${prod.expiryDate.difference(DateTime.now()).inDays} Days left',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 140.sp,
+                      fontSize: 130.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),

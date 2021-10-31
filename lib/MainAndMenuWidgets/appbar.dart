@@ -26,7 +26,7 @@ class _AppbarState extends State<AppbarButton> with TickerProviderStateMixin {
       alignment: Alignment.topLeft,
       child: Container(
           color: Colors.transparent,
-          height: deviceSize.height * 0.1,
+          height: 105.h,
           width: deviceSize.width * 0.3,
           margin: EdgeInsets.only(top: 42.h),
           padding: EdgeInsets.only(right: 300.w),

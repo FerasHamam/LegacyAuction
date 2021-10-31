@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 //screens
-import '../widgets/ProductsScreen.dart';
+import '../MainAndMenuWidgets/ProductsScreen.dart';
 import 'MenuScreen.dart';
 //widgets
-import '../widgets/appbar.dart';
-import '../widgets/AppbarWidget.dart';
+import '../MainAndMenuWidgets/appbar.dart';
+import '../MainAndMenuWidgets/AppbarWidget.dart';
 
 class StackScreen extends StatefulWidget {
   static String name = 'MainScreen';

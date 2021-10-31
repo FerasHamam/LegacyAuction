@@ -2,8 +2,8 @@
     package="com.example.ai_project">
    
    <application
-        android:label="ai_project"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Legacy Auction"
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

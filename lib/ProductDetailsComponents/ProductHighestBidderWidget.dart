@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-//constants
 
 class ProductHighestBiderWidget extends StatelessWidget {
   final String highestBidder;
@@ -12,7 +11,7 @@ class ProductHighestBiderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
     return Container(
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.center,
       height: deviceSize.height * 0.1,
       padding: EdgeInsets.symmetric(horizontal: 80.sp),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
