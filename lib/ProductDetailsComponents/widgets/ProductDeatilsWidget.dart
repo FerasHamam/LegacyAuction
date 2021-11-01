@@ -3,9 +3,9 @@ import 'package:ai_project/models/Product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 //widgets
-import './ProductDateWidget.dart';
-import './ProductDescWidget.dart';
-import './ProductHighestBidderWidget.dart';
+import 'ProductDateWidget.dart';
+import 'ProductDescWidget.dart';
+import 'ProductHighestBidderWidget.dart';
 
 class ProductDetailsWidget extends StatelessWidget {
   final Product prod;
@@ -35,6 +35,7 @@ class ProductDetailsWidget extends StatelessWidget {
         ProductHighestBiderWidget(
           highestBidder: prod.highestbidder,
           highestBid: prod.bidPrice,
+          prodId: prod.prodId,
         ),
         ProductDateWidget(
           postedin: prod.postedin,

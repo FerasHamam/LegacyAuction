@@ -1,6 +1,5 @@
 import 'package:ai_project/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 //models
@@ -19,28 +18,54 @@ class ProductsList extends StatelessWidget {
       width: deviceSize.width,
       child: Stack(
         children: [
-          Align(
+          Container(
             alignment: Alignment.topCenter,
             child: ElevationWidget(),
           ),
-          FirebaseAnimatedList(
-              defaultChild: Container(
-                child: Center(
-                  child: CircularProgressIndicator(
-                    color: kPrimaryColor,
-                    strokeWidth: 30.sp,
-                  ),
-                ),
-              ),
-              padding: EdgeInsets.only(top: 600.sp, bottom: 300.sp),
-              query: Provider.of<Products>(context, listen: false)
-                  .getDatabaseRef(),
-              itemBuilder: (context, dataSnapShot, animation, index) {
-                final json = dataSnapShot.value as Map<dynamic, dynamic>;
-                final product = Product.fromJson(json);
-                product.setProdId(dataSnapShot.key!);
-                return ProductWidget(product);
-              }),
+          Container(
+            margin: EdgeInsets.only(top: 100.h),
+            child: StreamBuilder(
+              stream: Provider.of<FirebaseProvider>(context, listen: false)
+                  .getDatabaseRef()
+                  .onValue,
+              builder: (context, AsyncSnapshot<dynamic> snapshot) {
+                List<Product> products = [];
+                if (snapshot.connectionState == ConnectionState.waiting)
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: kPrimaryColor,
+                    ),
+                  );
+                else if (snapshot.hasData) {
+                  Map<dynamic, dynamic> value =
+                      snapshot.data.snapshot.value as Map<dynamic, dynamic>;
+                  int index = 0;
+                  value.forEach((key, value) {
+                    final product =
+                        Product.fromJson(value as Map<dynamic, dynamic>);
+                    if (product.expiryDate
+                            .difference(DateTime.now())
+                            .inMinutes <
+                        0) {
+                      Provider.of<FirebaseProvider>(context, listen: false)
+                          .getDatabaseRef()
+                          .child(key)
+                          .remove();
+                    } else {
+                      products.add(product);
+                      products[index].setProdId(key);
+                      index++;
+                    }
+                  });
+                }
+                return ListView.builder(
+                  itemCount: products.length,
+                  itemBuilder: (context, index) =>
+                      ProductWidget(products[index]),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );

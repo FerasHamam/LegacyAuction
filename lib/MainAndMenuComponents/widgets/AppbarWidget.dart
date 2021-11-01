@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 //constants
-import '../constants.dart';
+import '../../constants.dart';
 
 class AppbarWidget extends StatelessWidget {
   const AppbarWidget({Key? key}) : super(key: key);

@@ -9,10 +9,10 @@ import 'package:ai_project/models/Product.dart';
 //constants
 import 'package:ai_project/constants.dart';
 //input
-import 'package:ai_project/inputComponents/InputContainer.dart';
+import 'package:ai_project/inputComponents/widgets/InputContainer.dart';
 //widgets
-import 'package:ai_project/ProductDetailsComponents/ProductDeatilsWidget.dart';
-import 'package:ai_project/ProductDetailsComponents/ProductImageWidget.dart';
+import 'package:ai_project/ProductDetailsComponents/widgets/ProductDeatilsWidget.dart';
+import 'package:ai_project/ProductDetailsComponents/widgets/ProductImageWidget.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final Product prod;
@@ -134,7 +134,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           widget.prod.setProdBidPrice(bidPrice.text);
                           widget.prod.setProdHigherBider(
                               FirebaseAuth.instance.currentUser!.email!);
-                          final _ref = await Provider.of<Products>(context,
+                          final _ref = await Provider.of<FirebaseProvider>(
+                                  context,
                                   listen: false)
                               .getDatabaseRef();
                           await _ref

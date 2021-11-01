@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 //screens
-import '../screens//ProductDetailsScreen.dart';
+import '../../ProductDetailsComponents/ProductDetailsScreen.dart';
 //constants
 //models
-import '../models/Product.dart';
+import '../../models/Product.dart';
 
 class ProductWidget extends StatelessWidget {
   final Product prod;
@@ -30,7 +30,8 @@ class ProductWidget extends StatelessWidget {
             Container(
               width: deviceSize.width * 0.85,
               height: deviceSize.height * 0.3,
-              margin: EdgeInsets.all(50.sp),
+              margin: EdgeInsets.only(
+                  top: 50.sp, bottom: 50.sp, right: 50.sp, left: 50.sp),
               decoration: BoxDecoration(
                 image: new DecorationImage(
                     image: NetworkImage(prod.imageURL), fit: BoxFit.cover),
@@ -47,7 +48,7 @@ class ProductWidget extends StatelessWidget {
               width: deviceSize.width * 0.85,
               height: deviceSize.height * 0.05,
               margin: EdgeInsets.only(
-                  top: 60.sp, left: 150.sp, right: 150.sp, bottom: 150.sp),
+                  top: 12.h, left: 150.sp, right: 150.sp, bottom: 150.sp),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(150.sp),
                 color: Colors.black54,
@@ -97,14 +98,6 @@ class ProductWidget extends StatelessWidget {
               ]),
             ),
           ],
-        ),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 850.w),
-          child: Divider(
-            color: Colors.black,
-            thickness: 5.sp,
-            height: 20.sp,
-          ),
         ),
       ]),
     );

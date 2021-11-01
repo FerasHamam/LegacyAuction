@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 //constants
 import '../constants.dart';
 //input
-import '../inputComponents/InputContainer.dart';
+import '../inputComponents/widgets/InputContainer.dart';
 //models
 import '../models/Products.dart';
 import '../models/AppState.dart';
@@ -250,7 +250,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           if (isValid) {
                             _formKey.currentState!.save();
                             try {
-                              Provider.of<Products>(context, listen: false)
+                              Provider.of<FirebaseProvider>(context,
+                                      listen: false)
                                   .addProduct(productName.text, desc.text,
                                       startingPrice.text, imageUrl.text);
                               Provider.of<AppState>(context, listen: false)

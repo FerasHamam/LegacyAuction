@@ -4,7 +4,7 @@ import 'package:lottie/lottie.dart';
 //constants
 import '../constants.dart';
 //widgets
-import '../UserInformationComponents/EmailandNameWidget.dart';
+import 'widgets/EmailandNameWidget.dart';
 //providers
 import '../models/User.dart';
 

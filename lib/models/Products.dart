@@ -4,7 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import './Product.dart';
 import './User.dart';
 
-class Products with ChangeNotifier {
+class FirebaseProvider with ChangeNotifier {
   void addProduct(
       String name, String desc, String startingPrice, String imageURL) {
     final Product newProduct = new Product(

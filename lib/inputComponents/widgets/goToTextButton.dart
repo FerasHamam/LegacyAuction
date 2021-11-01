@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 //constants
-import '../constants.dart';
+import '../../constants.dart';
 //screens
 //provider
 import 'package:provider/provider.dart';
-import '../models/AppState.dart';
+import '../../models/AppState.dart';
 
 class goToTextButton extends StatelessWidget {
   final String text;

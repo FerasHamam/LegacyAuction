@@ -7,7 +7,7 @@ import './models/User.dart';
 import './models/Products.dart';
 //screens
 import 'MainAndMenuComponents/screens/StackScreen.dart';
-import './AddProduct/AddProductScreen.dart';
+import './AddProductComponents/AddProductScreen.dart';
 import 'UserInformationComponents/MyInformationScreen.dart';
 import 'inputComponents/LoginAndSignupScreen.dart';
 //firebase
@@ -28,10 +28,10 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => AppState()),
         ChangeNotifierProvider(create: (context) => UserData()),
-        ChangeNotifierProvider(create: (context) => Products()),
+        ChangeNotifierProvider(create: (context) => FirebaseProvider()),
       ],
       child: ScreenUtilInit(
-        designSize: Size(1920, 1080),
+        designSize: Size(2200, 1080),
         builder: () => MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(

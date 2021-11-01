@@ -11,6 +11,8 @@ class Product with ChangeNotifier {
   String highestbidder;
   DateTime postedin;
   DateTime expiryDate;
+
+  //constructor
   Product(
       {required this.name,
       required this.desc,
@@ -21,6 +23,8 @@ class Product with ChangeNotifier {
       required this.highestbidder,
       required this.postedin,
       required this.expiryDate});
+
+  //json
   Map<String, dynamic> toJson() => <String, dynamic>{
         'name': name,
         'desc': desc,
@@ -44,10 +48,7 @@ class Product with ChangeNotifier {
         postedin = DateTime.parse(json['postedin'] as String),
         expiryDate = DateTime.parse(json['expiryDate'] as String);
 
-  void setProduct() {
-    notifyListeners();
-  }
-
+  //setters
   void setProdId(String prodId) {
     this.prodId = prodId;
   }
@@ -60,6 +61,7 @@ class Product with ChangeNotifier {
     this.highestbidder = highestbidder;
   }
 
+  //getters
   String getProdId() {
     return this.prodId;
   }
