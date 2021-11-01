@@ -18,7 +18,7 @@ class AppbarWidget extends StatelessWidget {
       child: Text(
         'L E G A C Y',
         textAlign: TextAlign.center,
-        style: TextStyle(color: Colors.white, fontSize: 160.sp),
+        style: TextStyle(color: Colors.white, fontSize: 170.sp),
       ),
     );
   }
