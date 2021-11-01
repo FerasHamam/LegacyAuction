@@ -43,8 +43,10 @@ dev_dependencies:
     sdk: flutter
 
 flutter_icons:
-  android: "launcher_icon"
-  image_path: "lib/assets/icons/auction.png"
+  android: true
+  image_path: lib/assets/icons/auction.png
+  adaptive_icon_foreground: lib/assets/icons/auction.png
+  adpative_icon_background: "#B8B5FF"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

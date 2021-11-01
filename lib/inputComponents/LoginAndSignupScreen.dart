@@ -24,6 +24,7 @@ class _LoginAndSignupScreenState extends State<LoginAndSignupScreen>
   late TextEditingController email;
   late TextEditingController name;
   late TextEditingController password;
+  late TextEditingController confirmPassword;
   late AnimationController _controller;
   final _formKey = GlobalKey<FormState>();
   bool isValid = false;
@@ -33,6 +34,7 @@ class _LoginAndSignupScreenState extends State<LoginAndSignupScreen>
     email = TextEditingController();
     name = TextEditingController();
     password = TextEditingController();
+    confirmPassword = TextEditingController();
     _controller = AnimationController(vsync: this);
     super.initState();
   }
@@ -52,114 +54,153 @@ class _LoginAndSignupScreenState extends State<LoginAndSignupScreen>
     final userData = Provider.of<UserData>(context);
     return Scaffold(
       body: Stack(children: [
-        AnimatedContainer(
-          duration: Duration(milliseconds: 200),
-          child: Form(
-            key: _formKey,
-            child: Container(
-              alignment: Alignment.topCenter,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: deviceSize.height * 0.1,
-                    ),
-                    Lottie.asset('lib/assets/lottie/Login.json',
-                        height: 250.h,
-                        controller: _controller, onLoaded: (composition) {
-                      _controller
-                        ..duration = composition.duration
-                        ..forward();
-                    }),
-                    SizedBox(
-                      height: deviceSize.height * 0.1,
-                    ),
-                    if (type == "Signup")
-                      inputContainer(
-                        child: TextFormField(
-                          controller: name,
-                          textInputAction: TextInputAction.next,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          onSaved: (value) {
-                            if (value == null) {
-                              value = "";
-                            }
-                            name.text = value;
-                          },
-                          validator: (value) {
-                            if (value == null) {
-                              value = "";
-                            }
-                            if (value.length < 3) {
-                              return 'Name should be at least 3 characters long!';
-                            }
-                            return null;
-                          },
-                          cursorColor: kPrimaryColor,
-                          decoration: InputDecoration(
-                              icon: Icon(
-                                Icons.text_fields_rounded,
-                                color: kPrimaryColor,
-                              ),
-                              hintText: 'Enter Your Name',
-                              border: InputBorder.none),
-                        ),
-                      ),
+        Form(
+          key: _formKey,
+          child: Container(
+            alignment: Alignment.topCenter,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: deviceSize.height * 0.1,
+                  ),
+                  Lottie.asset('lib/assets/lottie/Login.json',
+                      height: 250.h,
+                      controller: _controller, onLoaded: (composition) {
+                    _controller
+                      ..duration = composition.duration
+                      ..forward();
+                  }),
+                  SizedBox(
+                    height: deviceSize.height * 0.05,
+                  ),
+                  if (type == "Signup")
                     inputContainer(
                       child: TextFormField(
-                        controller: email,
+                        controller: name,
                         textInputAction: TextInputAction.next,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         onSaved: (value) {
                           if (value == null) {
                             value = "";
                           }
-                          email.text = value;
+                          name.text = value;
                         },
                         validator: (value) {
                           if (value == null) {
                             value = "";
                           }
-                          final pattern =
-                              r'(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)';
-                          final regExp = RegExp(pattern);
-                          if (value.isEmpty) {
-                            return 'Enter an email';
-                          } else if (!regExp.hasMatch(value)) {
-                            return 'Enter a valid email';
-                          } else {
-                            isValid = true;
-
-                            return null;
+                          if (value.length < 3) {
+                            return 'Name should be at least 3 characters long!';
                           }
+                          return null;
                         },
                         cursorColor: kPrimaryColor,
                         decoration: InputDecoration(
                             icon: Icon(
-                              Icons.email_rounded,
+                              Icons.text_fields_rounded,
                               color: kPrimaryColor,
                             ),
-                            hintText: 'Enter Your Email',
+                            hintText: 'Enter Your Name',
                             border: InputBorder.none),
                       ),
                     ),
+                  inputContainer(
+                    child: TextFormField(
+                      controller: email,
+                      textInputAction: TextInputAction.next,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      onSaved: (value) {
+                        if (value == null) {
+                          value = "";
+                        }
+                        email.text = value;
+                      },
+                      validator: (value) {
+                        if (value == null) {
+                          value = "";
+                        }
+                        final pattern =
+                            r'(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)';
+                        final regExp = RegExp(pattern);
+                        if (value.isEmpty) {
+                          return 'Enter an email';
+                        } else if (!regExp.hasMatch(value)) {
+                          return 'Enter a valid email';
+                        } else {
+                          isValid = true;
+
+                          return null;
+                        }
+                      },
+                      cursorColor: kPrimaryColor,
+                      decoration: InputDecoration(
+                          icon: Icon(
+                            Icons.email_rounded,
+                            color: kPrimaryColor,
+                          ),
+                          hintText: 'Enter Your Email',
+                          border: InputBorder.none),
+                    ),
+                  ),
+                  inputContainer(
+                    child: TextFormField(
+                      controller: password,
+                      textInputAction: TextInputAction.done,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      onSaved: (value) {
+                        if (value == null) {
+                          value = "";
+                        }
+                        password.text = value;
+                      },
+                      validator: (value) {
+                        if (value == null) {
+                          value = "";
+                        }
+                        password.text = value;
+                        password.selection = TextSelection.fromPosition(
+                          TextPosition(offset: value.length),
+                        );
+                        if (value.length < 6) {
+                          return 'Password must be at least 6 characters long!';
+                        }
+
+                        isValid = true;
+
+                        return null;
+                      },
+                      cursorColor: kPrimaryColor,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          icon: Icon(
+                            Icons.password_rounded,
+                            color: kPrimaryColor,
+                          ),
+                          hintText: 'Enter Your Password',
+                          border: InputBorder.none),
+                    ),
+                  ),
+                  if (type == "Signup")
                     inputContainer(
                       child: TextFormField(
-                        controller: password,
+                        controller: confirmPassword,
                         textInputAction: TextInputAction.done,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         onSaved: (value) {
                           if (value == null) {
                             value = "";
                           }
-                          password.text = value;
+                          confirmPassword.text = value;
                         },
                         validator: (value) {
                           if (value == null) {
                             value = "";
                           }
-                          if (value.length < 6) {
-                            return 'Password must be at least 6 characters long!';
+
+                          if (value != password.text) {
+                            isValid = false;
+                            return 'Must match your Password';
                           }
 
                           isValid = true;
@@ -173,77 +214,72 @@ class _LoginAndSignupScreenState extends State<LoginAndSignupScreen>
                               Icons.password_rounded,
                               color: kPrimaryColor,
                             ),
-                            hintText: 'Enter Your Password',
+                            hintText: 'Enter Your Confirm Password',
                             border: InputBorder.none),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 40),
-                      width: deviceSize.width * 0.8,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(29),
-                        child: ElevatedButton(
-                          child: Text(
-                            type,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          onPressed: () async {
-                            isValid = _formKey.currentState!.validate();
-                            print(isValid);
-                            if (isValid) {
-                              _formKey.currentState!.save();
-                              try {
-                                bool validUser;
-                                if (type == 'Signup')
-                                  validUser = await Provider.of<UserData>(
-                                          context,
-                                          listen: false)
-                                      .signup(
-                                          name: name.text,
-                                          email: email.text,
-                                          password: password.text);
-                                else
-                                  validUser = await Provider.of<UserData>(
-                                          context,
-                                          listen: false)
-                                      .login(
-                                          email: email.text,
-                                          password: password.text);
-
-                                if (validUser)
-                                  Navigator.of(context)
-                                      .pushReplacementNamed(StackScreen.name);
-                              } catch (err) {
-                                ScaffoldMessenger.of(context)
-                                    .hideCurrentSnackBar();
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content: Text(
-                                    err as String,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  backgroundColor: Colors.red,
-                                ));
-                              }
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                              primary: kPrimaryColor,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 40, vertical: 20),
-                              textStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500)),
+                  Container(
+                    margin: EdgeInsets.only(top: 40),
+                    width: deviceSize.width * 0.8,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(29),
+                      child: ElevatedButton(
+                        child: Text(
+                          type,
+                          style: TextStyle(color: Colors.white),
                         ),
+                        onPressed: () async {
+                          isValid = _formKey.currentState!.validate();
+                          if (isValid) {
+                            _formKey.currentState!.save();
+                            try {
+                              bool validUser;
+                              if (type == 'Signup')
+                                validUser = await Provider.of<UserData>(context,
+                                        listen: false)
+                                    .signup(
+                                        name: name.text,
+                                        email: email.text,
+                                        password: password.text);
+                              else
+                                validUser = await Provider.of<UserData>(context,
+                                        listen: false)
+                                    .login(
+                                        email: email.text,
+                                        password: password.text);
+
+                              if (validUser)
+                                Navigator.of(context)
+                                    .pushReplacementNamed(StackScreen.name);
+                            } catch (err) {
+                              ScaffoldMessenger.of(context)
+                                  .hideCurrentSnackBar();
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text(
+                                  err as String,
+                                  textAlign: TextAlign.center,
+                                ),
+                                backgroundColor: Colors.red,
+                              ));
+                            }
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                            primary: kPrimaryColor,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 40, vertical: 20),
+                            textStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500)),
                       ),
                     ),
-                    goToTextButton(
-                        text: type == 'Login'
-                            ? 'Signup instead'
-                            : 'Login instead'),
-                  ],
-                ),
+                  ),
+                  goToTextButton(
+                      text:
+                          type == 'Login' ? 'Signup instead' : 'Login instead'),
+                ],
               ),
             ),
           ),
