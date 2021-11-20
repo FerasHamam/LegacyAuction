@@ -8,7 +8,7 @@
   <h3 align="center">Legacy Auction</h3>
 
   <p align="center">
-    Legacy Auction is auctions app developed by me for a company interview in just 3 days!
+    3 days of hardwork!
   </p>
 </p>
 
@@ -61,7 +61,6 @@
 ### Prerequisites
 
 * [Flutter installed](https://flutter.dev/docs/get-started/install)
-* [Pixabay API key](https://pixabay.com/service/about/api/)
 
 
 ### Installation
@@ -69,7 +68,7 @@
 1. Clone the repo
 
    ```sh
-   git clone https://github.com/FerasHamam/LegacyWallpapers.git
+   git clone https://github.com/FerasHamam/LegacyAuction.git
    ```
 2. Run the following in your IDE terminal
    ```sh
